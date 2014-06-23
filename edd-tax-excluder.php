@@ -10,7 +10,7 @@ add_filter( 'edd_get_cart_tax', 	'ase_edd_exclude_taxes');
 add_filter( 'edd_settings_tabs', 	'ase_edd_exclude_taxes_tab' );
 add_action( 'admin_init', 			'ase_edd_exclude_taxes_settings');
 
-function ase_edd_exclude_taxes(){
+function ase_edd_exclude_taxes($cart_tax){
 
 	global $edd_options;
 
@@ -20,7 +20,7 @@ function ase_edd_exclude_taxes(){
 	if ( get_current_user_id() == $id || ( is_array($id) && in_array( get_current_user_id(), $id ) )) {
 		return '0';
 	} else {
-		return true;
+		return $cart_tax;
 	}
 }
 
